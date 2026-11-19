@@ -1,0 +1,64 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<!--
+  Ilustración vectorial propia para el hero: teléfono con una cerradura en pantalla.
+  Paleta del Manual de Marca: Blanco Hueso (#F9FAFB), Carbón Grafito (#18181B)
+  y un único detalle en Rojo Emergencia (#DC2626) a modo de notificación urgente.
+  Al ser inline, no genera ninguna petición adicional ni requiere atribución.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 800 1000"
+  fill="none"
+  role="img"
+  aria-labelledby="hero-ilustracion-titulo"
+  class:list={["h-full w-full", className]}
+>
+  <title id="hero-ilustracion-titulo">
+    Ilustración minimalista de un teléfono con una cerradura en la pantalla
+  </title>
+
+  <!-- Fondo y halo suave -->
+  <rect width="800" height="1000" fill="#F9FAFB" />
+  <circle cx="400" cy="500" r="330" fill="#18181B" opacity="0.04" />
+
+  <!-- Líneas de urgencia / movimiento, en eco con el isotipo del reloj -->
+  <g stroke="#18181B" stroke-opacity="0.16" stroke-width="12" stroke-linecap="round">
+    <line x1="96" y1="420" x2="170" y2="420" />
+    <line x1="72" y1="500" x2="170" y2="500" />
+    <line x1="110" y1="580" x2="170" y2="580" />
+  </g>
+
+  <!-- Cuerpo del teléfono -->
+  <rect x="220" y="120" width="360" height="760" rx="58" fill="#18181B" />
+
+  <!-- Pantalla -->
+  <rect x="240" y="140" width="320" height="720" rx="44" fill="#FFFFFF" />
+
+  <!-- Cámara / muesca -->
+  <rect x="350" y="130" width="100" height="30" rx="10" fill="#18181B" />
+
+  <!-- Indicador inferior -->
+  <rect x="360" y="838" width="80" height="8" rx="4" fill="#18181B" opacity="0.25" />
+
+  <!-- Cerradura dentro de la pantalla -->
+  <path
+    d="M 340 470 V 420 A 60 60 0 0 1 460 420 V 470"
+    stroke="#18181B"
+    stroke-width="26"
+    stroke-linecap="round"
+  />
+  <rect x="320" y="462" width="160" height="130" rx="24" fill="#18181B" />
+  <circle cx="400" cy="506" r="16" fill="#F9FAFB" />
+  <path d="M 392 516 H 408 L 416 558 H 384 Z" fill="#F9FAFB" />
+
+  <!-- Notificación roja: único acento de marca -->
+  <circle cx="530" cy="196" r="26" fill="#DC2626" opacity="0.12" />
+  <circle cx="530" cy="196" r="12" fill="#DC2626" />
+</svg>

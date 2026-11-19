@@ -1,1 +1,135 @@
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/inter";
 @import "tailwindcss";
+
+/*
+ * Sistema de Diseño — Cerrajería Urgencias 24hs
+ * Basado en Manual de Identidad Visual v1.0 (Regla 60 / 30 / 10)
+ */
+@theme {
+  /* Paleta Cromática */
+  --color-blanco-hueso: #f9fafb; /* 60% Base: fondo general, tarjetas, respiro visual */
+  --color-carbon-grafito: #18181b; /* 30% Soporte: títulos, textos, bordes, footer */
+  --color-rojo-emergencia: #dc2626; /* 10% Acento: etiqueta 24hs, CTA llamar, alertas */
+  --color-rojo-emergencia-hover: #b91c1c;
+
+  /* Sistema Tipográfico */
+  --font-display:
+    "Plus Jakarta Sans Variable", "Plus Jakarta Sans", "Montserrat",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    "Inter Variable", "Inter", "Helvetica Neue", Helvetica, Arial,
+    ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-blanco-hueso);
+    color: var(--color-carbon-grafito);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-carbon-grafito);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Botón primario según Sección 04: fondo #DC2626 con texto blanco puro #FFFFFF */
+  .btn-llamar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background-color: var(--color-rojo-emergencia);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    border-radius: 0.625rem;
+    padding: 0.875rem 1.5rem;
+    transition:
+      background-color 150ms ease,
+      transform 120ms ease;
+  }
+
+  .btn-llamar:hover {
+    background-color: var(--color-rojo-emergencia-hover);
+  }
+
+  .btn-llamar:active {
+    transform: translateY(1px);
+  }
+
+  /* Botón secundario según Sección 04: fondo transparente y borde sólido de 2px en #18181B */
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    background-color: transparent;
+    color: var(--color-carbon-grafito);
+    border: 2px solid var(--color-carbon-grafito);
+    font-family: var(--font-display);
+    font-weight: 700;
+    border-radius: 0.625rem;
+    padding: calc(0.875rem - 2px) calc(1.5rem - 2px);
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      transform 120ms ease;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: var(--color-carbon-grafito);
+    color: var(--color-blanco-hueso);
+  }
+
+  .btn-whatsapp:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Animaciones mínimas: entrada escalonada de tarjetas y gesto de scroll. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-up {
+    animation: fade-up 550ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation-delay: calc(var(--stagger, 0) * 80ms);
+  }
+
+  .animate-nudge {
+    animation: nudge 1.8s ease-in-out infinite;
+  }
+}
