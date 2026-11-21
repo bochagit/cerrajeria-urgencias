@@ -40,6 +40,18 @@
     letter-spacing: -0.02em;
   }
 
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-carbon-grafito);
     outline-offset: 2px;
@@ -131,5 +143,9 @@
 
   .animate-nudge {
     animation: nudge 1.8s ease-in-out infinite;
+  }
+
+  .faq-icon {
+    transition: transform 200ms ease;
   }
 }

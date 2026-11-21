@@ -13,4 +13,15 @@ export const SITE = {
 
   coveragePlaceholder: "CABA y GBA",
   availabilityLabel: "Guardia activa 24hs",
+  responseTimePlaceholder: "[XX min]",
+
+  // Zonas a confirmar con el cliente.
+  coverageZones: ["CABA", "GBA Norte", "GBA Oeste", "GBA Sur"],
+
+  // Encuadre del mapa: CABA y primer cordón del GBA.
+  map: {
+    latitude: -34.6037,
+    longitude: -58.3816,
+    zoom: 13,
+  },
 } as const;

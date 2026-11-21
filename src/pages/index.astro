@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import BrandLogo from "../components/BrandLogo.astro";
 import HeroIllustration from "../components/HeroIllustration.astro";
 import ServiceIcon from "../components/ServiceIcon.astro";
+import CoverageMap from "../components/CoverageMap.astro";
 import { SITE } from "../data/site";
 import { SERVICIOS } from "../data/servicios";
+import { BENEFICIOS, PASOS, FAQS } from "../data/content";
 ---
 
 <BaseLayout>
@@ -155,4 +157,283 @@ import { SERVICIOS } from "../data/servicios";
       </ul>
     </div>
   </section>
+  <!-- Contacto + cobertura -->
+  <section id="contacto" class="scroll-mt-8 border-t border-carbon-grafito/10 py-16 sm:py-24">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p
+            class="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-carbon-grafito/60 uppercase"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-rojo-emergencia" aria-hidden="true"></span>
+            Atención 24hs
+          </p>
+          <h2
+            class="mt-4 font-display text-3xl font-extrabold tracking-tight text-carbon-grafito sm:text-4xl"
+          >
+            Llamanos ahora, salimos ya
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-carbon-grafito/70">
+            Contanos tu situación y te atendemos de inmediato. Sin formularios ni esperas.
+          </p>
+
+          <a
+            href={SITE.phoneHref}
+            class="mt-8 block font-display text-3xl font-extrabold tracking-tight text-carbon-grafito sm:text-4xl"
+          >
+            {SITE.phoneDisplay}
+          </a>
+          <p class="mt-2 text-sm text-carbon-grafito/60">
+            Llegada estimada: {SITE.responseTimePlaceholder}
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href={SITE.phoneHref} class="btn-llamar text-base">
+              Llamar Ahora
+            </a>
+            <a
+              href={SITE.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp text-base"
+            >
+              WhatsApp
+            </a>
+          </div>
+
+          <div class="mt-8">
+            <h3
+              class="font-display text-xs font-bold tracking-[0.14em] text-carbon-grafito/60 uppercase"
+            >
+              Zonas de cobertura
+            </h3>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {
+                SITE.coverageZones.map((zona) => (
+                  <li class="rounded-full border border-carbon-grafito/20 px-3 py-1 text-sm text-carbon-grafito/80">
+                    {zona}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <CoverageMap />
+      </div>
+    </div>
+  </section>
+
+  <!-- Confianza -->
+  <section
+    id="confianza"
+    class="scroll-mt-8 border-t border-carbon-grafito/10 bg-carbon-grafito/5 py-16 sm:py-20"
+  >
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <p
+        class="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-carbon-grafito/60 uppercase"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-rojo-emergencia" aria-hidden="true"></span>
+        Por qué elegirnos
+      </p>
+      <h2
+        class="mt-4 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-carbon-grafito sm:text-4xl"
+      >
+        Tranquilidad cuando más la necesitás
+      </h2>
+
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          BENEFICIOS.map((beneficio, index) => (
+            <li
+              class="animate-fade-up rounded-2xl border border-carbon-grafito/10 bg-blanco-hueso p-5"
+              style={`--stagger: ${index}`}
+            >
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-carbon-grafito text-blanco-hueso">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  class="h-4 w-4"
+                >
+                  <path d="m5 12 4 4L19 6" />
+                </svg>
+              </span>
+              <h3 class="mt-4 font-display text-base font-bold text-carbon-grafito">
+                {beneficio.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-carbon-grafito/70">
+                {beneficio.description}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cómo trabajamos -->
+  <section
+    id="como-trabajamos"
+    class="scroll-mt-8 bg-carbon-grafito py-16 text-blanco-hueso sm:py-24"
+  >
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <p
+        class="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-blanco-hueso/60 uppercase"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-rojo-emergencia" aria-hidden="true"></span>
+        Cómo trabajamos
+      </p>
+      <h2
+        class="mt-4 max-w-2xl font-display text-3xl font-extrabold tracking-tight text-blanco-hueso sm:text-4xl"
+      >
+        Tres pasos y listo
+      </h2>
+
+      <ol class="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+        {
+          PASOS.map((paso, index) => (
+            <li class="animate-fade-up" style={`--stagger: ${index}`}>
+              <span class="font-display text-5xl font-extrabold text-blanco-hueso/25">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 class="mt-4 font-display text-lg font-bold text-blanco-hueso">
+                {paso.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-blanco-hueso/65">
+                {paso.description}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section id="faq" class="scroll-mt-8 py-16 sm:py-24">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <p
+        class="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-carbon-grafito/60 uppercase"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-rojo-emergencia" aria-hidden="true"></span>
+        Preguntas frecuentes
+      </p>
+      <h2
+        class="mt-4 font-display text-3xl font-extrabold tracking-tight text-carbon-grafito sm:text-4xl"
+      >
+        Lo que seguramente te preguntás
+      </h2>
+
+      <div class="mt-10 border-y border-carbon-grafito/15">
+        {
+          FAQS.map((faq) => (
+            <details class="border-b border-carbon-grafito/15 last:border-b-0">
+              <summary
+                class="flex cursor-pointer items-center justify-between gap-6 py-5 font-display text-base font-semibold text-carbon-grafito sm:text-lg"
+              >
+                {faq.question}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                  class="faq-icon h-5 w-5 shrink-0 text-carbon-grafito/50"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </summary>
+              <p class="max-w-2xl pb-5 text-sm leading-relaxed text-carbon-grafito/70">
+                {faq.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-carbon-grafito py-12 text-blanco-hueso">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <div class="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <BrandLogo inverse size="sm" />
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-blanco-hueso/60">
+            [PLACEHOLDER: Razón social y datos de inscripción profesional.]
+          </p>
+        </div>
+
+        <div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3
+              class="font-display text-xs font-bold tracking-[0.14em] text-blanco-hueso/50 uppercase"
+            >
+              Contacto
+            </h3>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li>
+                <a
+                  href={SITE.phoneHref}
+                  class="text-blanco-hueso/80 transition-colors hover:text-blanco-hueso"
+                >
+                  {SITE.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-blanco-hueso/80 transition-colors hover:text-blanco-hueso"
+                >
+                  WhatsApp {SITE.whatsappDisplay}
+                </a>
+              </li>
+              <li class="text-blanco-hueso/60">{SITE.availabilityLabel}</li>
+            </ul>
+          </div>
+          <div>
+            <h3
+              class="font-display text-xs font-bold tracking-[0.14em] text-blanco-hueso/50 uppercase"
+            >
+              Cobertura
+            </h3>
+            <p class="mt-3 text-sm text-blanco-hueso/60">{SITE.coveragePlaceholder}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 border-t border-white/10 pt-6 text-xs text-blanco-hueso/40">
+        © 2026 [PLACEHOLDER: Razón social]. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra fija de contacto en móvil -->
+  <div
+    class="fixed inset-x-0 bottom-0 z-50 border-t border-carbon-grafito/10 bg-blanco-hueso/95 px-4 py-3 backdrop-blur lg:hidden"
+  >
+    <div class="mx-auto flex max-w-5xl gap-3">
+      <a href={SITE.phoneHref} class="btn-llamar flex-1 py-3 text-sm">
+        Llamar
+      </a>
+      <a
+        href={SITE.whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-whatsapp flex-1 py-3 text-sm"
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
 </BaseLayout>

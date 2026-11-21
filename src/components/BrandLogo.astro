@@ -4,10 +4,19 @@ interface Props {
   safeSpace?: boolean;
   /** Altura visual del logotipo. El ancho mínimo siempre respeta 160px según el manual. */
   size?: "sm" | "md" | "lg";
+  /** Variante para fondos oscuros: invierte el grafito del isotipo y del logotipo. */
+  inverse?: boolean;
   class?: string;
 }
 
-const { safeSpace = false, size = "md", class: className = "" } = Astro.props;
+const {
+  safeSpace = false,
+  size = "md",
+  inverse = false,
+  class: className = "",
+} = Astro.props;
+
+const keyFill = inverse ? "#F9FAFB" : "#18181B";
 
 const sizeClasses = {
   sm: "text-base",
@@ -48,7 +57,7 @@ const sizeClasses = {
       <line x1="210" y1="126" x2="210" y2="66" stroke="#DC2626" stroke-width="13" stroke-linecap="round" />
       <line x1="210" y1="126" x2="167" y2="169" stroke="#DC2626" stroke-width="14" stroke-linecap="round" />
     </g>
-    <g fill="#18181B">
+    <g fill={keyFill}>
       <path d="M 229 8.5 A 84 84 0 0 1 349 84 C 349 102 343 119 332 132 L 350 250 H 207 L 214 228 H 323 L 308 128 C 319 116 326 101 326 84 A 61 61 0 0 0 229 35.5 Z" />
       <circle cx="265" cy="84" r="34" />
       <path d="M 250 110 H 280 L 295 203 H 235 Z" />
@@ -56,7 +65,12 @@ const sizeClasses = {
   </svg>
 
   <!-- Logotipo tipográfico con Plus Jakarta Sans -->
-  <span class="flex flex-col leading-none font-display text-carbon-grafito">
+  <span
+    class:list={[
+      "flex flex-col leading-none font-display",
+      inverse ? "text-blanco-hueso" : "text-carbon-grafito",
+    ]}
+  >
     <span class="text-[1.15em] font-extrabold tracking-tight leading-[0.95]">
       Cerrajería
     </span>
